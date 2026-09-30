@@ -30,9 +30,13 @@ body {
   display: none;
 }
 
+/* a logo tem cores escuras e fundo transparente: fica sobre um cartão branco */
 .logo {
-  width: 180px;
-  max-width: 60%;
+  width: 260px;
+  max-width: 75%;
+  padding: 16px 20px;
+  background: #fff;
+  border-radius: 14px;
   margin-bottom: 28px;
 }
 
