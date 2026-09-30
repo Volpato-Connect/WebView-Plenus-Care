@@ -10,7 +10,7 @@
   const ANTIGO = /Sistema PGB\s*-\s*Plataforma de Gestão de Benefícios\s*©\s*\d{4}/;
 
   // Define o novo texto com o ano atual
-  const NOVO = "Sistema Desenvolvido pela Volpato Connect © 2026";
+  const NOVO = `Sistema Desenvolvido pela Volpato Connect © ${new Date().getFullYear()}`;
 
   // Controla se já existe uma execução agendada
   let agendado = false;

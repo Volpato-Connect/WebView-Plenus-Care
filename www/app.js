@@ -33,6 +33,9 @@
   // o app nativo avisa quando está pronto
   document.addEventListener("deviceready", iniciar, false);
 
+  // sem o cordova.js o "deviceready" não dispara; a página carregada já basta
+  window.addEventListener("load", iniciar);
+
   // rede de segurança: se o aviso não vier em 3 s, segue assim mesmo
   setTimeout(iniciar, 3000);
 

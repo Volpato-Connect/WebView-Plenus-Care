@@ -1,5 +1,16 @@
 {
   "java.configuration.updateBuildConfiguration": "disabled",
+  "java.import.exclusions": [
+    "**/node_modules/**",
+    "**/.metadata/**",
+    "**/archetype-resources/**",
+    "**/META-INF/maven/**"
+  ],
+  "java.import.gradle.wrapper.enabled": true,
+  "gradle.nestedProjects": false,
+  "files.watcherExclude": {
+    "**/node_modules/**": true
+  },
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.codeActionsOnSave": {
