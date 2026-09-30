@@ -5,5 +5,5 @@ window.APP_CONFIG = {
   SYSTEM_URL: "https://plenuscare.bemestar.1norte.tech/login",
 
   // deixe "" para desligar o push por enquanto
-  ONESIGNAL_APP_ID: ""
+  ONESIGNAL_APP_ID: "",
 };

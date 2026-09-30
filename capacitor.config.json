@@ -1,6 +1,6 @@
 {
-  "appId": "tech.norte1.sayan.beneficios",
-  "appName": "Sayan Benefícios",
+  "appId": "tech.norte1.plenuscare",
+  "appName": "Plenus Care",
   "webDir": "www",
   "server": {
     "androidScheme": "https",

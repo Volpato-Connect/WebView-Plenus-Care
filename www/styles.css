@@ -1,11 +1,14 @@
 :root {
-  --brand:  #031835;  /* navy da marca */
-  --accent: #04B16E;  /* verde da marca */
+  --brand: #031835; /* navy da marca */
+  --accent: #04b16e; /* verde da marca */
 }
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
-html, body {
+html,
+body {
   margin: 0;
   height: 100%;
   background: var(--brand);
@@ -23,24 +26,41 @@ html, body {
   text-align: center;
 }
 
-.oculto { display: none; }
+.oculto {
+  display: none;
+}
 
-.logo { width: 180px; max-width: 60%; margin-bottom: 28px; }
+.logo {
+  width: 180px;
+  max-width: 60%;
+  margin-bottom: 28px;
+}
 
 .spinner {
   width: 34px;
   height: 34px;
-  border: 3px solid rgba(255,255,255,0.2);
+  border: 3px solid rgba(255, 255, 255, 0.2);
   border-top-color: var(--accent);
   border-radius: 50%;
   animation: girar 0.9s linear infinite;
 }
 
-@keyframes girar { to { transform: rotate(360deg); } }
+@keyframes girar {
+  to {
+    transform: rotate(360deg);
+  }
+}
 
-.msg { color: #b8c8dc; font-size: 15px; margin-top: 18px; }
+.msg {
+  color: #b8c8dc;
+  font-size: 15px;
+  margin-top: 18px;
+}
 
-h1 { font-size: 22px; margin: 0 0 8px; }
+h1 {
+  font-size: 22px;
+  margin: 0 0 8px;
+}
 
 .botao {
   margin-top: 22px;

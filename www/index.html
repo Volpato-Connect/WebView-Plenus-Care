@@ -1,27 +1,26 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Sayan Benefícios</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Plenus Care</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="loading" class="tela">
+      <img src="../img/logo.png" alt="Plenus Care" class="logo" />
+      <div class="spinner"></div>
+      <p class="msg">Abrindo o sistema...</p>
+    </div>
 
-  <div id="loading" class="tela">
-    <img src="logo.png" alt="Sayan" class="logo">
-    <div class="spinner"></div>
-    <p class="msg">Abrindo o sistema...</p>
-  </div>
+    <div id="offline" class="tela oculto">
+      <img src="../img/logo.png" alt="Plenus Care" class="logo" />
+      <h1>Sem conexão</h1>
+      <p class="msg">Verifique sua internet e tente de novo.</p>
+      <button id="retry" class="botao">Tentar novamente</button>
+    </div>
 
-  <div id="offline" class="tela oculto">
-    <img src="logo.png" alt="Sayan" class="logo">
-    <h1>Sem conexão</h1>
-    <p class="msg">Verifique sua internet e tente de novo.</p>
-    <button id="retry" class="botao">Tentar novamente</button>
-  </div>
-
-  <script src="config.js"></script>
-  <script src="app.js"></script>
-</body>
+    <script src="config.js"></script>
+    <script src="app.js"></script>
+  </body>
 </html>
