@@ -1,0 +1,22 @@
+{
+  "appId": "tech.norte1.sayan.beneficios",
+  "appName": "Sayan Benefícios",
+  "webDir": "www",
+  "server": {
+    "androidScheme": "https",
+    "allowNavigation": [
+      "sayan.bemestar.1norte.tech",
+      "*.bemestar.1norte.tech",
+      "*.1norte.tech"
+    ]
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 1500,
+      "launchAutoHide": false,
+      "backgroundColor": "#031835",
+      "showSpinner": false,
+      "androidScaleType": "CENTER_CROP"
+    }
+  }
+}

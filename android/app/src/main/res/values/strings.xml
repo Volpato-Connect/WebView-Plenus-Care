@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Sayan Benefícios</string>
+    <string name="title_activity_main">Sayan Benefícios</string>
+    <string name="package_name">tech.norte1.sayan.beneficios</string>
+    <string name="custom_url_scheme">tech.norte1.sayan.beneficios</string>
+</resources>
