@@ -8,6 +8,10 @@ Aplicativo Android que abre um sistema web dentro de uma WebView, desenvolvido c
 
 📘 [Tutorial completo: construindo um app WebView do zero (PDF)](docs/tutorial-app-webview-v2.pdf)
 
+📱 [Guia: gerar o instalador (.apk) no Android Studio e instalar no smartphone (PDF)](docs/Guia_Gerar_APK_Android_Studio.pdf)
+
+Passo a passo para gerar o arquivo `.apk` do aplicativo pelo Android Studio e instalá-lo diretamente em um smartphone Android, sem precisar publicar na Play Store.
+
 ## Início rápido
 
 ```bash
