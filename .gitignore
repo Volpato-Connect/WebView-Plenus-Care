@@ -5,3 +5,7 @@ android/.gradle/
 android/local.properties
 .idea/
 *.log
+# chave de upload da Play Store e senhas (NUNCA versionar)
+*.jks
+*.keystore
+android/keystore.properties
