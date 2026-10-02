@@ -8,6 +8,17 @@ import android.webkit.WebView;          // Componente que renderiza a interface 
 import com.getcapacitor.BridgeWebViewClient; // Gerenciador de eventos da WebView do Capacitor
 import java.io.ByteArrayOutputStream;   // Fluxo para armazenar dados em memória temporária
 import java.io.InputStream;             // Fluxo para leitura de arquivos de entrada
+import android.Manifest;                // Nomes das permissões do Android
+import android.app.DownloadManager;     // Serviço do sistema que baixa arquivos e mostra a notificação
+import android.content.pm.PackageManager; // Usado para verificar se uma permissão foi concedida
+import android.os.Build;                // Informa a versão do Android do aparelho
+import android.os.Environment;          // Caminho da pasta pública "Downloads"
+import android.webkit.CookieManager;    // Lê os cookies de sessão da WebView (login)
+import android.webkit.URLUtil;          // Descobre o nome do arquivo a partir do link
+import android.widget.Toast;            // Mensagens curtas na parte de baixo da tela
+import androidx.activity.OnBackPressedCallback; // Trata o botão "voltar" do Android
+import androidx.core.app.ActivityCompat; // Pede permissões ao usuário
+import androidx.core.content.ContextCompat; // Verifica permissões já concedidas
 
 public class MainActivity extends BridgeActivity {
     // Variável global para armazenar o conteúdo em texto do script JavaScript
@@ -50,5 +61,61 @@ public class MainActivity extends BridgeActivity {
                 }
             }
         });
+
+        // Botão "voltar": volta uma página no sistema; na primeira tela, manda o app para segundo plano
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                WebView webView = bridge.getWebView();
+                if (webView.canGoBack()) {
+                    webView.goBack();
+                } else {
+                    moveTaskToBack(true);
+                }
+            }
+        });
+
+        // Downloads: a WebView não baixa arquivos sozinha, então repassa o link para o DownloadManager
+        bridge.getWebView().setDownloadListener((url, userAgent, contentDisposition, mimeType, contentLength) ->
+            baixarArquivo(url, userAgent, contentDisposition, mimeType)
+        );
+    }
+
+    private void baixarArquivo(String url, String userAgent, String contentDisposition, String mimeType) {
+        // Arquivos gerados dentro da página (blob:/data:) não têm endereço para o DownloadManager buscar
+        if (!URLUtil.isHttpUrl(url) && !URLUtil.isHttpsUrl(url)) {
+            Toast.makeText(this, "Não foi possível baixar este arquivo pelo app.", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        // Até o Android 9 é preciso permissão para gravar na pasta Downloads
+        if (
+            Build.VERSION.SDK_INT < Build.VERSION_CODES.Q &&
+            ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(this, new String[] { Manifest.permission.WRITE_EXTERNAL_STORAGE }, 1);
+            Toast.makeText(this, "Permita o acesso e toque em baixar novamente.", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        try {
+            String nome = URLUtil.guessFileName(url, contentDisposition, mimeType);
+
+            DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
+            request.setMimeType(mimeType);
+            // Envia os cookies do login para o servidor liberar o arquivo
+            request.addRequestHeader("Cookie", CookieManager.getInstance().getCookie(url));
+            request.addRequestHeader("User-Agent", userAgent);
+            request.setTitle(nome);
+            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+            request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, nome);
+
+            DownloadManager dm = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
+            dm.enqueue(request);
+            Toast.makeText(this, "Baixando " + nome + "...", Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            android.util.Log.e("Download", "Falha ao baixar " + url, e);
+            Toast.makeText(this, "Não foi possível baixar o arquivo.", Toast.LENGTH_LONG).show();
+        }
     }
 }

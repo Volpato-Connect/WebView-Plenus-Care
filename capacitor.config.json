@@ -5,7 +5,6 @@
   "server": {
     "androidScheme": "https",
     "allowNavigation": [
-      "sayan.bemestar.1norte.tech",
       "*.bemestar.1norte.tech",
       "*.1norte.tech"
     ]
